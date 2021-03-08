@@ -1,0 +1,104 @@
+body {
+  background-image: url(../img/patas-gatito.jpg);
+}
+
+.container {
+  height: 600px;
+  margin-top: 10px;
+}
+
+#rowsup {
+  height: 50px;
+  background-color: #d3d3d3;
+}
+
+.col-4 {
+}
+
+.col-8 {
+  background-size: cover;
+}
+
+#izq {
+  height: 650px;
+  background-color: pink;
+  overflow-y: scroll;
+  box-shadow: 0px 0px 20px #d4d4d4;
+}
+
+#der {
+  height: 650px;
+  background-image: url(../img/patasnegras.jpg);
+  overflow-y: scroll;
+  box-shadow: 0px 0px 20px #d4d4d4;
+}
+
+#search {
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+li {
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  font-family: "Akaya Telivigala", cursive;
+  font-size: 20px;
+}
+
+img {
+  border-radius: 100%;
+}
+
+#perfil:hover {
+  background-color: #fff0f5;
+  cursor: pointer;
+}
+
+.menu-item {
+  padding: 10px;
+}
+
+#form-message {
+  margin-top: 600px;
+}
+
+#mensaje {
+  width: 650px;
+  border-radius: 10px;
+}
+
+#salir {
+  height: 30px;
+  text-decoration: none;
+  color: black;
+  background-color: blueviolet;
+  padding: 5px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+#enviar {
+  background-color: blueviolet;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#form-message {
+  background-color: #d3d3d3;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.message-in {
+  background-color: green;
+}
+
+.message-out {
+  background-color: #f0fff0;
+  border-radius: 10px;
+  width: 50%;
+  height: 30px;
+}

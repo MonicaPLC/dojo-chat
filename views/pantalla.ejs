@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+ <meta name='viewport' content='with=device_with, initial-scale=1,maximun-scale=1' user-scalable='no'>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ <script src="/jquery.js"></script>
+ <script src="/moment-locales.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+ <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="css/estilos.css">
+ <title>Login</title>
+</head>
+
+<body>
+
+
+
+ <div class="container">
+  <div id="rowsup" class=row>
+
+   <div class="col-4">
+    <input id="search" type="search" placeholder="buscar">
+    <a id="salir" href="/login">Salir</a>
+   </div>
+
+   <div class="col-8"></div>
+  </div>
+  <div id="rowinf" class=row>
+   <div id="izq" class="col-4">
+
+
+    <ul id="lista">
+     <div id="perfil">
+      <img src="/img/perfil_1.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Selina</li>
+     </div>
+     <hr>
+     <div id="perfil">
+      <img src="/img/perfil_2.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Silvestre</li>
+     </div>
+     <hr>
+
+     <div id="perfil">
+      <img src="/img/perfil_3.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Bola de Nieve</li>
+      <hr>
+     </div>
+
+     <div id="perfil">
+      <img src="/img/perfil_4.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Garfield</li>
+     </div>
+     <hr>
+
+     <div id="perfil">
+      <img src="/img/perfil_5.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Tom</li>
+     </div>
+     <hr>
+
+     <div id="perfil">
+      <img src="/img/perfil_6.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Salem</li>
+     </div>
+     <hr>
+
+     <div id="perfil">
+      <img src="/img/perfil_7.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Papo</li>
+     </div>
+     <hr>
+
+     <div id="perfil">
+      <img src="/img/perfil_8.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Tom</li>
+     </div>
+     <hr>
+
+     <div id=perfil>
+      <img src="/img/perfil_9.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Salem</li>
+     </div>
+     <hr>
+
+     <div id="perfil">
+      <img src="/img/perfil_10.jpg" width="60" height="60" alt="Foto de perfil">
+      <li class="menu-item">Papo</li>
+     </div>
+     <hr>
+
+    </ul>
+
+   </div>
+   <div id="der" class="col-8">
+    <div class="chating">
+     <!-- Mensajes que yo recibo
+       <div class="w-message w-message-in">
+        <div class="w-message-text">
+         <h5 class="blue-1">Usuario</h5>
+         <p>${datos.mensaje}</p>
+         <div class="time">${moment().format("HH:mm")}</div>
+        </div>
+       </div>
+
+        Mensajes que yo escribo
+        <div class="w-message w-message-out">
+         <div class="w-message-text">
+          <p>${datos.mensaje}</p>
+          <div class="time">${moment().format("HH:mm")}</div>
+         </div>
+        </div>
+        -->
+    </div>
+
+    <form id="form-message" action="/mensajes" method="POST">
+     <input type="text" name="message" id="mensaje" placeholder="Escribe tu mensaje">
+
+     <i style="font-size:24px" class="fa">&#xf0c6;</i>
+     <i style="font-size:24px" class="fa">&#xf130;</i>
+     <i style="font-size:24px" class="fa">&#xf11a;</i>
+
+     <input id="enviar" type="submit">
+    </form>
+
+   </div>
+  </div>
+ </div>
+
+
+
+</body>
+
+</html>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+ // variable
+ const socket = io('http://localhost:8000');
+
+ //para que el formulario no se envíe
+ $("#form-message").on("submit", function (event) {
+  event.preventDefault();
+  // creo mi objeto.
+  const datos = {
+   mensaje: $("#mensaje").val()
+  }
+  //:::ENVÍO MENSAJE ??? NO VA ENCERRADO EN ALGO EL EMIT??
+  socket.emit('enviar_mensaje', datos);
+
+  // Mandamos un POST para guardar el mensaje
+  $.post("/mensajes", datos, function (res) {
+   console.log(res)
+
+  }, "json");
+
+  let otro_html = `  
+  <div class="message-out">
+   <p>${datos.mensaje}${moment().format("HH:mm")}</p>
+   </div >`
+
+  $(".chating").append(otro_html);
+ });
+
+
+
+
+
+ //recibo mensaje del servidor:::::::::::::::::::
+ socket.on('respuesta', function (datos) {
+  let html = `  
+  <div class="message-in">
+  <p>${datos.mensaje}${moment().format("HH:mm")}</p >
+   </div >
+  
+  `
+
+  $(".chating").append(html);
+
+  console.log(datos)
+ });
+
+
+</script>
+
+</body>
+
+</html>
