@@ -63,13 +63,14 @@ router.post("/autenticacion", async (req, res) => {
 
   //si la comparación del email de bd y del input es falsa.
   if (isCorrect == false) {
-    // mensaje y retorna al login ( o sea no deja pasar)
-    req.flash("errores", "Usuario inexistente o contraseña incorrecta");
-    res.redirect("/autenticacion");
+    // mensaje y retorna a autenticacion ( o sea no deja pasar)
+    req.flash("errores", "Usuario o contraseña incorrecta");
+    res.redirect("/login");
   }
 
   // si no es falso guardamos la sesión (visita) del usaurio.
   req.session.user = new_user;
+  console.log(req.session.user);
 
   // enviamos al home (le damos el pase).
   res.redirect("/");

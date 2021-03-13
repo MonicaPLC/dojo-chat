@@ -21,11 +21,9 @@
 </head>
 
 <body>
-
  <div class="container">
-  <form id="login" action="/autenticacion" method="POST">
+  <form class="form-group" id="login" action="/autenticacion" method="POST">
    <h3>Cats CHAT</h3>
-   <i class="fa fa-comments-o fa-4x" aria-hidden="true"></i>
    <div class="form-group">
     <input name="email" type="email" class="form-control" placeholder="Ingresa tu email">
    </div>
@@ -34,12 +32,12 @@
     <input name="password" type="password" class="form-control" placeholder="Ingresa tu contraseña">
    </div>
    <br>
-   <button type="submit" class="btn btn-primary">Submit</button>
+   <button type="submit" class="btn btn-primary">Enviar</button>
    <br>
 
    <div id="pregunta">
-    <h6>¿No estás registrado?</h6>
-    <a id="registrate-aqui" href="/registro">Regístrate aquí</a>
+
+    <a id="registrate-aqui" href="/registro">¿No estás registrado? Regístrate aquí</a>
    </div>
 
   </form>

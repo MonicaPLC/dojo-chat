@@ -1,6 +1,6 @@
 .container {
   width: 700px;
-  height: 500px;
+  height: 300px;
   margin: auto;
   margin-top: 100px;
 }
@@ -10,6 +10,8 @@
   padding: 30px;
   border-radius: 10px;
   background-image: url(../img/fondo-login.jpg);
+  height: 400px;
+  width: 650px;
 }
 
 h3 {
@@ -37,4 +39,8 @@ h6 {
 
 .fa {
   float: right;
+}
+
+body {
+  background-color: gray;
 }

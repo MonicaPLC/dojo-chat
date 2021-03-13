@@ -1,5 +1,5 @@
 module.exports = (sql, type) => {
-  //crear tabla
+  //crear modelo de tabla (estructura)
   return sql.define(
     "message",
     {

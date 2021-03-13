@@ -15,17 +15,20 @@ function checkLogin(req, res, next) {
   next();
 }
 
-//:::::::::PASO A LA PANTALLA DE MENSAJES::::::::::::
-router.get("/", [checkLogin], (req, res) => {
-  //console.log(mensaje);
+//PARA MOSTRAR VISTA PANTALLA, CON TODOS LOS MENSAJES DE LA BD Y ALERTAS.
+router.get("/", [checkLogin], async (req, res) => {
+  const mensaje = await Message.findAll({
+    include: [User],
+  });
+  console.log(mensaje);
 
-  let errores = req.flash("errores");
   let aviso = req.flash("aviso");
-  res.render("pantalla", { errores, aviso });
+  let error = req.flash("error");
+
+  res.render("pantalla", { mensaje, aviso, error });
 });
 
 //::::::::GUARDAR LOS MENSAJES EN LA BASE DE DATOS::::::::::::
-
 router.post("/mensajes", async (req, res) => {
   const user = await User.findByPk(req.session.user.id);
   //message del objeto es el campo message.

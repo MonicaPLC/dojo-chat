@@ -1,4 +1,6 @@
 const Sequelize = require("sequelize");
+// va ausar sequelize
+// va a usar el modelo de tabla Message y modelo de tabla User
 const MessageModel = require("./models/message");
 const UserModel = require("./models/user");
 
